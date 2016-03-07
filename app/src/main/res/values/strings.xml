@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">UkrRoad</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="mainMakeIssue">Створити Завдання</string>
+    <string name="mainHello">Добридень шанований гість. Для створення нового завдання натискуйте кнопку +</string>
+    <string name="send">Відправити</string>
+    <string name="chooseAction">Зробіть ваш вибір</string>
+    <string name="enterAddress">Будь ласка введіть адресу і натискуйте кнопку пошуку або виберіть адресу на карті</string>
+    <string name="saveAddress">Зберегти адресу</string>
+    <string name="enterComments">Введіть коментарі</string>
+    <string name="enterEMail">Введіть e-mail</string>
+    <string name="saveComments">Зберегти</string>
+    <string name="cancelComments">Відмінити</string>
+    <string name="noConnection">Немає зєднання з інтернетом</string>
+    <integer name="RESULT_OK">-1</integer>
+    <integer name="RESULT_CANCEL">0</integer>
+    <integer name="CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE">1887</integer>
+    <string name="NAME_DIRECTORY">UkraineRoad</string>
+    <string name="TAG">dialog</string>
+    <string name="IDISUE">idissue</string>
+    <string name="PATHIMAGE">pathimage</string>
+
+
+    <string-array name="defects">
+        <item>Яма на дорозі</item>
+        <item>Яма у дворі</item>
+        <item>Люк</item>
+    </string-array>
+    <string-array name="status">
+        <item>Завдання відкрите</item>
+        <item>Завдання закрите</item>
+        <item>Завдання в прогресі</item>
+        <item>Чернетка</item>
+    </string-array>
+
+
+    <string name="google_maps_api_key">AIzaSyBURlWwj6p_T6Bpm46G8ojky59X_MMyJCA</string>
+
+    <string-array name="items">
+        <item>Додати фотографії</item>
+        <item>Вказати адресу</item>
+        <item>Вказати проблему</item>
+        <item>Коментарі</item>
+        <item>E-Mail</item>
+    </string-array>
+
+    <string-array name="actions">
+        <item>Сфотографувати</item>
+        <item>Вибрати з галереї</item>
+    </string-array>
+
+</resources>
