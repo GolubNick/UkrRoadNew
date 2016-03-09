@@ -4,7 +4,9 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @DatabaseTable(tableName = "issues")
 public class Issue {
@@ -22,13 +24,13 @@ public class Issue {
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "email")
     private String email;
     @DatabaseField(foreign = true)
-    private Collection<Image> images;
+    private List<Image> images;
 
-    public void setImage(Collection<Image> images){
+    public void setImage(List<Image> images){
         this.images = images;
     }
 
-    public Collection<Image> getImages(){
+    public List<Image> getImages(){
         return images;
     }
 
@@ -37,6 +39,6 @@ public class Issue {
     }
 
     public Issue(){
-
+        images = new ArrayList<>();
     }
 }
