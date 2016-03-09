@@ -15,4 +15,8 @@ public class Image {
     public Image(){
 
     }
+
+    public void setImagePath(String imagePath){
+        this.imagePath = imagePath;
+    }
 }

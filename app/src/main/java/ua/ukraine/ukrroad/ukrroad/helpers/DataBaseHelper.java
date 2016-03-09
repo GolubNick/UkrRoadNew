@@ -71,7 +71,7 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
         return imageDAO;
     }
     //синглтон для IssueDAO
-    public IssueDAO getRoleDAO() throws SQLException{
+    public IssueDAO getIssueDAO() throws SQLException{
         if(issueDAO == null){
             issueDAO = new IssueDAO(getConnectionSource(), Issue.class);
         }

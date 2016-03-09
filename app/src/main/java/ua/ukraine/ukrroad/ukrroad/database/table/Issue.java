@@ -9,7 +9,9 @@ import java.util.Collection;
 @DatabaseTable(tableName = "issues")
 public class Issue {
 
-    @DatabaseField(generatedId = true)
+    public final static String ID = "id";
+
+    @DatabaseField(generatedId = true, columnName = ID)
     private int Id;
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "address")
     private String address;
