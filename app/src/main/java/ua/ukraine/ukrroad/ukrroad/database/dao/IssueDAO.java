@@ -10,8 +10,8 @@ import ua.ukraine.ukrroad.ukrroad.database.table.Issue;
 
 public class IssueDAO extends BaseDaoImpl<Issue, Integer> {
 
-    protected IssueDAO(ConnectionSource connectionSource,
-                      Class<Issue> dataClass) throws SQLException {
+    public IssueDAO(ConnectionSource connectionSource,
+                    Class<Issue> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }
 
