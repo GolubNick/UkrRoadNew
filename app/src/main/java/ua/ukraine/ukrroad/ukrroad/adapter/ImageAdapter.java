@@ -24,10 +24,10 @@ public class ImageAdapter extends BaseAdapter {
         inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
     }
 
-//    public void updateContent (String updates) {
-//        listFiles.add(updates);
-//        this.notifyDataSetChanged();
-//    }
+    public void updateContent (Image updates) {
+        listFiles.add(updates);
+        this.notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {

@@ -31,7 +31,7 @@ public class FileHelper {
         }
 
         String timeStamp = String.valueOf(System.currentTimeMillis());
-        File newFile = new File(path.getPath() + File.separator + timeStamp + ".jpg");
+        File newFile = new File(path.getAbsolutePath() + File.separator + timeStamp + ".jpg");
         return Uri.fromFile(newFile);
     }
 

@@ -36,14 +36,12 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
-        issue = new Issue();
-        image = new Image();
-        image.setImagePath(pathImage);
-        issue.addImage(image);
-        image.setIssue(issue);
-
         try {
+            issue = new Issue();
             HelperFactory.getHelper().getIssueDAO().create(issue);
+            image = new Image();
+            image.setImagePath(pathImage);
+            image.setIssue(issue);
             HelperFactory.getHelper().getImageDAO().create(image);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,7 +66,6 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
                 break;
             case 4:
                 break;
-
         }
     }
 }
