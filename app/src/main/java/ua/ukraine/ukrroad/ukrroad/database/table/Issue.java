@@ -1,7 +1,9 @@
 package ua.ukraine.ukrroad.ukrroad.database.table;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class Issue {
     public final static String ID = "id";
 
     @DatabaseField(generatedId = true, columnName = ID)
-    private int Id;
+    private int id;
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "address")
     private String address;
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "defect")
@@ -23,14 +25,14 @@ public class Issue {
     private String comment;
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "email")
     private String email;
-    @DatabaseField(foreign = true)
-    private List<Image> images;
+    @ForeignCollectionField(eager = true)
+    private Collection<Image> images;
 
-    public void setImage(List<Image> images){
+    public void setImage(Collection<Image> images){
         this.images = images;
     }
 
-    public List<Image> getImages(){
+    public Collection<Image> getImages(){
         return images;
     }
 
@@ -38,7 +40,15 @@ public class Issue {
         images.add(image);
     }
 
+    public int getId(){
+        return id;
+    }
+
     public Issue(){
         images = new ArrayList<>();
+        address = "";
+        defect = "";
+        comment = "";
+        email = "";
     }
 }

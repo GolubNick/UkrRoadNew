@@ -11,10 +11,14 @@ public class Image {
     private int Id;
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "image_path")
     private String imagePath;
+    @DatabaseField(foreign = true)
+    protected Issue issue;
 
-    public Image(){
-
+    public void setIssue(Issue issue) {
+        this.issue = issue;
     }
+
+    public Image(){}
 
     public void setImagePath(String imagePath){
         this.imagePath = imagePath;

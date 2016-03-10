@@ -12,21 +12,22 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 import ua.ukraine.ukrroad.ukrroad.R;
+import ua.ukraine.ukrroad.ukrroad.database.table.Image;
 
 public class ImageAdapter extends BaseAdapter {
     Context context;
-    ArrayList<String> listFiles;
+    ArrayList<Image> listFiles;
     LayoutInflater inflater;
-    public ImageAdapter(Context context, ArrayList<String> listFiles){
+    public ImageAdapter(Context context, ArrayList<Image> listFiles){
         this.context = context;
         this.listFiles = listFiles;
         inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
     }
 
-    public void updateContent (String updates) {
-        listFiles.add(updates);
-        this.notifyDataSetChanged();
-    }
+//    public void updateContent (String updates) {
+//        listFiles.add(updates);
+//        this.notifyDataSetChanged();
+//    }
 
     @Override
     public int getCount() {
@@ -50,7 +51,7 @@ public class ImageAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.images, parent, false);
         }
         ImageView imageView = (ImageView)view.findViewById(R.id.image);
-        Bitmap imageBitmap = decodeFile(listFiles.get(position));
+        Bitmap imageBitmap = decodeFile(listFiles.get(position).getImagePath());
 
         imageView.setImageBitmap(imageBitmap);
         return view;

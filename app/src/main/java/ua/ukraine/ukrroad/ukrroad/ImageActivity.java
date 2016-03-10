@@ -15,7 +15,6 @@ import ua.ukraine.ukrroad.ukrroad.helpers.HelperFactory;
 public class ImageActivity extends Activity {
     String idIssue;
     GridView gridView;
-    ArrayList<String> list;
     Issue issue;
     ImageAdapter imageAdapter;
 
@@ -26,18 +25,15 @@ public class ImageActivity extends Activity {
 
         idIssue = getIntent().getStringExtra(getResources().getString(R.string.IDISUE));
 
-        list = new ArrayList<>();
         gridView = (GridView)findViewById(R.id.gridViewImages);
         try {
             issue = HelperFactory.getHelper().getIssueDAO().getIssueById(Integer.parseInt(idIssue));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ArrayList<Image> listImageIssues = (ArrayList)issue.getImages();
-        for (Image listImageIssue : listImageIssues)
-            list.add(listImageIssue.getImagePath());
+        ArrayList<Image> listImageIssues = new ArrayList<Image>(issue.getImages());
 
-        imageAdapter = new ImageAdapter(this, list);
+        imageAdapter = new ImageAdapter(this, listImageIssues);
         gridView.setAdapter(imageAdapter);
     }
 }

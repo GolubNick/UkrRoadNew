@@ -40,13 +40,15 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         image = new Image();
         image.setImagePath(pathImage);
         issue.addImage(image);
+        image.setIssue(issue);
 
         try {
-            idIssue = HelperFactory.getHelper().getIssueDAO().create(issue);
+            HelperFactory.getHelper().getIssueDAO().create(issue);
+            HelperFactory.getHelper().getImageDAO().create(image);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        idIssue = issue.getId();
     }
 
     @Override
