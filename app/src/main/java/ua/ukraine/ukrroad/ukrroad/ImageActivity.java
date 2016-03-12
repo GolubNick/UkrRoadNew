@@ -43,7 +43,7 @@ public class ImageActivity extends Activity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ArrayList<Image> listImageIssues = new ArrayList<Image>(issue.getImages());
+        ArrayList<Image> listImageIssues = new ArrayList<>(issue.getImages());
         chooseAction = new ChooseAction();
         imageAdapter = new ImageAdapter(this, listImageIssues);
         gridView.setAdapter(imageAdapter);
@@ -64,7 +64,7 @@ public class ImageActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == getResources().getInteger(R.integer.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)) {
             if (resultCode == Activity.RESULT_OK) {
-                String imagePath = data != null ? getRealPathFromURI(data.getData()) : fileHelper.generateFileUri(getResources().getString(R.string.NAME_DIRECTORY)).getPath();
+                String imagePath = data != null ? getRealPathFromURI(data.getData()) : fileHelper.mUri.getPath();
                 Image image = new Image();
                 image.setImagePath(imagePath);
                 image.setIssue(issue);

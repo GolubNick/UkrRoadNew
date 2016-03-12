@@ -18,7 +18,7 @@ import ua.ukraine.ukrroad.ukrroad.R;
 import ua.ukraine.ukrroad.ukrroad.helpers.FileHelper;
 
 public class ChooseAction extends DialogFragment implements AdapterView.OnItemClickListener {
-    Uri mUri;
+//    Uri mUri;
     FileHelper fileHelper;
 
     @Override
@@ -39,9 +39,10 @@ public class ChooseAction extends DialogFragment implements AdapterView.OnItemCl
         Intent intent;
         switch (position) {
             case 0:
-                mUri = fileHelper.generateFileUri(getResources().getString(R.string.NAME_DIRECTORY));
+//                mUri = fileHelper.generateFileUri(getResources().getString(R.string.NAME_DIRECTORY));
+                fileHelper.setUri(getActivity());
                 intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mUri);
+                intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileHelper.mUri);
                 getActivity().startActivityForResult(intent,
                         getResources().getInteger(R.integer.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE));
                 break;
@@ -61,7 +62,7 @@ public class ChooseAction extends DialogFragment implements AdapterView.OnItemCl
             if (data != null)
                 intent.putExtra(getResources().getString(R.string.PATHIMAGE), getRealPathFromURI(data.getData()));
             else
-                intent.putExtra(getResources().getString(R.string.PATHIMAGE), mUri.getPath());
+                intent.putExtra(getResources().getString(R.string.PATHIMAGE), fileHelper.mUri.getPath());
             startActivity(intent);
         }
     }
