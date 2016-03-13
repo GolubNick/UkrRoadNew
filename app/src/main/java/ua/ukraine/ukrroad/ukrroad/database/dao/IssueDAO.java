@@ -3,6 +3,7 @@ package ua.ukraine.ukrroad.ukrroad.database.dao;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
@@ -27,5 +28,12 @@ public class IssueDAO extends BaseDaoImpl<Issue, Integer> {
         PreparedQuery<Issue> preparedQuery = queryBuilder.prepare();
         Issue goalList = query(preparedQuery).get(0);
         return goalList;
+    }
+
+    public void updateIssue(Issue issue) throws SQLException {
+        UpdateBuilder<Issue, Integer> updateBuilder = updateBuilder();
+        updateBuilder.where().eq("id", issue.getId());
+        updateBuilder.updateColumnValue("address" /* column */, issue.getAddress() /* value */);
+        updateBuilder.update();
     }
 }

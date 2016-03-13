@@ -21,6 +21,8 @@
     <string name="TAG">dialog</string>
     <string name="IDISUE">idissue</string>
     <string name="PATHIMAGE">pathimage</string>
+    <string name="GET">GET</string>
+    <string name="POST">POST</string>
 
 
     <string-array name="defects">
@@ -36,7 +38,7 @@
     </string-array>
 
 
-    <string name="google_maps_api_key">AIzaSyBURlWwj6p_T6Bpm46G8ojky59X_MMyJCA</string>
+    <string name="google_maps_api_key">AIzaSyBg2RInhC3gwLRv7Ht7oAIsuusIIPqCMEQ</string>
 
     <string-array name="items">
         <item>Додати фотографії</item>

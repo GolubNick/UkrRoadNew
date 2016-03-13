@@ -44,6 +44,14 @@ public class Issue {
         return id;
     }
 
+    public void setAddress(String address){
+        this.address = address;
+    }
+
+    public String getAddress(){
+        return address;
+    }
+
     public Issue(){
         images = new ArrayList<>();
         address = "";

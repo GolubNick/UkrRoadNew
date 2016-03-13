@@ -8,12 +8,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import ua.ukraine.ukrroad.ukrroad.database.table.Image;
 import ua.ukraine.ukrroad.ukrroad.database.table.Issue;
 import ua.ukraine.ukrroad.ukrroad.helpers.HelperFactory;
+import ua.ukraine.ukrroad.ukrroad.maps.MapsActivity;
 
 public class ListActivity extends Activity implements AdapterView.OnItemClickListener {
     ListView listView;
@@ -59,8 +62,12 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
                 startActivity(intent);
                 break;
             case 1:
+                intent = new Intent(ListActivity.this, MapsActivity.class);
+                intent.putExtra(getResources().getString(R.string.IDISUE), String.valueOf(idIssue));
+                startActivity(intent);
                 break;
             case 2:
+                Toast.makeText(ListActivity.this, "TEST", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
                 break;
