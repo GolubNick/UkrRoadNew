@@ -22,13 +22,14 @@ public class CoordinatesFromAddress extends AsyncTask<String, Void, LatLng> {
         try {
             URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + address[0].replace(" ","+"));
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod(POST);
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
             connection.connect();
             InputStream inputStream = connection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line = bufferedReader.readLine();
-            if (line != null) {
-                jsonAllPlaces.append(line);
+            String line = null;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonAllPlaces.append(line + "\n");
             }
             String result = jsonAllPlaces.toString();
 

@@ -27,17 +27,17 @@ public class AddressFromCoordinates extends AsyncTask<LatLng, Void, String> {
     protected String doInBackground(LatLng... latLng) {
         StringBuffer jsonAllPlaces = new StringBuffer("");
         try {
-            URL url = new URL("http://maps.googleapis.com/maps/api/geocode/json?latlng="
+            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?latlng="
                     + latLng[0].latitude + "," + latLng[0].longitude + "&sensor=true&language=ru");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
             connection.setDoOutput(true);
             connection.connect();
             InputStream inputStream = connection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String line = bufferedReader.readLine();
-            if (line != null) {
-                jsonAllPlaces.append(line);
+            String line = null;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonAllPlaces.append(line + "\n");
             }
             String result = jsonAllPlaces.toString();
 
