@@ -3,6 +3,8 @@ package ua.ukraine.ukrroad.ukrroad;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 import java.sql.SQLException;
 import java.util.List;
 
+import ua.ukraine.ukrroad.ukrroad.Internet.Connect;
+import ua.ukraine.ukrroad.ukrroad.Internet.OnInternetListener;
 import ua.ukraine.ukrroad.ukrroad.database.table.Image;
 import ua.ukraine.ukrroad.ukrroad.database.table.Issue;
 import ua.ukraine.ukrroad.ukrroad.dialogfragment.CommentFragment;
@@ -54,6 +58,27 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
             e.printStackTrace();
         }
         idIssue = issue.getId();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.faSsendIssueButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Connect contect = new Connect(getApplicationContext());
+                contect.addListener(new OnInternetListener() {
+                    @Override
+                    public void onDisconnect() {
+//                        Toast.makeText(ListActivity.this, "Internet Disconect", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(R.id.listViewLayout), "Internet Disconect", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    }
+
+                    @Override
+                    public void onConnect() {
+                //todo
+                    }
+                });
+            }
+        });
+
     }
 
     @Override

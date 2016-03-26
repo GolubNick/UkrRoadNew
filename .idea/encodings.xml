@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/ua/ukraine/ukrroad/ukrroad/Internet" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/ua/ukraine/ukrroad/ukrroad/dialogfragment/CommentFragment.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/ua/ukraine/ukrroad/ukrroad/dialogfragment/EMailFragment.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/ua/ukraine/ukrroad/ukrroad/dialogfragment/ProblemFragment.java" charset="windows-1251" />
