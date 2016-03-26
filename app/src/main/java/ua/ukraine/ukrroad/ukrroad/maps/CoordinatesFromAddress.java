@@ -20,7 +20,7 @@ public class CoordinatesFromAddress extends AsyncTask<String, Void, LatLng> {
     protected LatLng doInBackground(String... address) {
         StringBuffer jsonAllPlaces = new StringBuffer("");
         try {
-            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + address[0].replace(" ","+"));
+            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + address[0].replace(" ","+") + "&sensor=false");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.setDoOutput(true);

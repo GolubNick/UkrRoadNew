@@ -15,15 +15,19 @@ import java.util.List;
 
 import ua.ukraine.ukrroad.ukrroad.database.table.Image;
 import ua.ukraine.ukrroad.ukrroad.database.table.Issue;
+import ua.ukraine.ukrroad.ukrroad.dialogfragment.CommentFragment;
+import ua.ukraine.ukrroad.ukrroad.dialogfragment.EMailFragment;
+import ua.ukraine.ukrroad.ukrroad.dialogfragment.ProblemFragment;
 import ua.ukraine.ukrroad.ukrroad.helpers.HelperFactory;
 import ua.ukraine.ukrroad.ukrroad.maps.MapsActivity;
 
-public class ListActivity extends Activity implements AdapterView.OnItemClickListener {
+public class ListActivity extends Activity implements AdapterView.OnItemClickListener, ProblemFragment.ProblemTransmitter, CommentFragment.CommentTransmitter, EMailFragment.EMailTransmitter {
     ListView listView;
     Issue issue;
     Image image;
     int idIssue;
     String pathImage;
+    ProblemFragment problemFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +71,42 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
                 startActivity(intent);
                 break;
             case 2:
-                Toast.makeText(ListActivity.this, "TEST", Toast.LENGTH_SHORT).show();
+                problemFragment.show(getFragmentManager(), getResources().getString(R.string.TAG));
                 break;
             case 3:
                 break;
             case 4:
                 break;
+        }
+    }
+
+    @Override
+    public void sendProblemName(String defect) {
+        issue.setDefect(defect);
+        try {
+            HelperFactory.getHelper().getIssueDAO().updateIssue(issue);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendComments(String comments) {
+        issue.setComment(comments);
+        try {
+            HelperFactory.getHelper().getIssueDAO().updateIssue(issue);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendEmail(String email) {
+        issue.setEmail(email);
+        try {
+            HelperFactory.getHelper().getIssueDAO().updateIssue(issue);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

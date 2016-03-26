@@ -19,10 +19,37 @@ public class Issue {
     private int id;
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "address")
     private String address;
+
+    public String getDefect() {
+        return defect;
+    }
+
+    public void setDefect(String defect) {
+        this.defect = defect;
+    }
+
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "defect")
     private String defect;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "comment")
     private String comment;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "email")
     private String email;
     @ForeignCollectionField(eager = true)
