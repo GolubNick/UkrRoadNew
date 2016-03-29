@@ -23,6 +23,7 @@
     <string name="PATHIMAGE">pathimage</string>
     <string name="GET">GET</string>
     <string name="POST">POST</string>
+    <string name="URL">http://192.168.77.25:8080/doUpload</string>string>
 
 
     <string-array name="defects">

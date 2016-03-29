@@ -16,11 +16,10 @@ import ua.ukraine.ukrroad.ukrroad.R;
 public class EMailFragment extends DialogFragment implements View.OnClickListener{
     EditText enterEMail;
     Button save, cancel;
-    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_dialog_email, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_email, container, false);
         getDialog().setTitle(getResources().getString(R.string.enterComments));
         enterEMail = (EditText)view.findViewById(R.id.email_edittext);
         save = (Button)view.findViewById(R.id.save_email);
@@ -36,15 +35,17 @@ public class EMailFragment extends DialogFragment implements View.OnClickListene
         switch (v.getId()){
             case R.id.save_email:
                 if (enterEMail.getText().toString().isEmpty())
-//                    Toast.makeText(getActivity(), "Test2", Toast.LENGTH_SHORT).show();
-                    Snackbar.make(view, getActivity().getResources().getString(R.string.enterEMail), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.enterEMail), Toast.LENGTH_SHORT).show();
+//                    Snackbar.make(getActivity().findViewById(R.id.listViewLayout), getActivity().getResources().getString(R.string.enterEMail), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 else{
                     EMailTransmitter listener = (EMailTransmitter)getActivity();
                     listener.sendEmail(enterEMail.getText().toString());
+                    enterEMail.setText("");
                     dismiss();
                 }
                 break;
             case R.id.cancel_email:
+                enterEMail.setText("");
                 dismiss();
                 break;
         }

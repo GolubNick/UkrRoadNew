@@ -19,4 +19,8 @@ public class ImageDAO extends BaseDaoImpl<Image, Integer> {
     public List<Image> getAllImages() throws SQLException{
         return this.queryForAll();
     }
+
+    public List<Image> getImagesByIssue(Issue issue) throws SQLException {
+        return this.queryBuilder().where().eq(Image.ISSUE,issue).query();
+    }
 }

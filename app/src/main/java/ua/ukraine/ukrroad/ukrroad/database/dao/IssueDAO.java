@@ -33,7 +33,10 @@ public class IssueDAO extends BaseDaoImpl<Issue, Integer> {
     public void updateIssue(Issue issue) throws SQLException {
         UpdateBuilder<Issue, Integer> updateBuilder = updateBuilder();
         updateBuilder.where().eq("id", issue.getId());
-        updateBuilder.updateColumnValue("address" /* column */, issue.getAddress() /* value */);
+        updateBuilder.updateColumnValue("address", issue.getAddress());
+        updateBuilder.updateColumnValue("defect", issue.getDefect());
+        updateBuilder.updateColumnValue("comment", issue.getComment());
+        updateBuilder.updateColumnValue("email", issue.getEmail());
         updateBuilder.update();
     }
 }

@@ -32,11 +32,17 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
     int idIssue;
     String pathImage;
     ProblemFragment problemFragment;
+    CommentFragment commentFragment;
+    EMailFragment emailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        problemFragment = new ProblemFragment();
+        commentFragment = new CommentFragment();
+        emailFragment = new EMailFragment();
 
         pathImage = getIntent().getStringExtra(getResources().getString(R.string.PATHIMAGE)).toString();
         String[] listItems = getResources().getStringArray(R.array.items);
@@ -67,8 +73,8 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
                 contect.addListener(new OnInternetListener() {
                     @Override
                     public void onDisconnect() {
-//                        Toast.makeText(ListActivity.this, "Internet Disconect", Toast.LENGTH_SHORT).show();
-                        Snackbar.make(findViewById(R.id.listViewLayout), "Internet Disconect", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                        Toast.makeText(ListActivity.this, "Internet Disconect", Toast.LENGTH_SHORT).show();
+//                        Snackbar.make(findViewById(R.id.listViewLayout), "Internet Disconect", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     }
 
                     @Override
@@ -99,8 +105,10 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
                 problemFragment.show(getFragmentManager(), getResources().getString(R.string.TAG));
                 break;
             case 3:
+                commentFragment.show(getFragmentManager(), getResources().getString(R.string.TAG));
                 break;
             case 4:
+                emailFragment.show(getFragmentManager(), getResources().getString(R.string.TAG));
                 break;
         }
     }

@@ -6,12 +6,13 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "images")
 public class Image {
+    public final static String ISSUE = "issue";
 
     @DatabaseField(generatedId = true)
     private int Id;
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = "image_path")
     private String imagePath;
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true, columnName = ISSUE)
     protected Issue issue;
 
     public void setIssue(Issue issue) {
