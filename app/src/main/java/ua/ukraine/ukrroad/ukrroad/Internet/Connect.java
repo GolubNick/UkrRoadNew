@@ -10,12 +10,12 @@ import java.util.TimerTask;
 public class Connect {
     private List<OnInternetListener> listeners = new ArrayList<OnInternetListener>();
     private Context mContext;
-
+    Timer timer;
     private boolean connect = true;
 
     public Connect(Context context){
         mContext = context;
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
 
             @Override
@@ -46,5 +46,9 @@ public class Connect {
         for (OnInternetListener listener : listeners) {
             listener.onConnect();
         }
+    }
+
+    public void stopTimer() {
+        timer.cancel();
     }
 }

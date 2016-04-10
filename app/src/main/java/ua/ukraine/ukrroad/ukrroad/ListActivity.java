@@ -1,7 +1,10 @@
 package ua.ukraine.ukrroad.ukrroad;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,7 +26,9 @@ import ua.ukraine.ukrroad.ukrroad.dialogfragment.CommentFragment;
 import ua.ukraine.ukrroad.ukrroad.dialogfragment.EMailFragment;
 import ua.ukraine.ukrroad.ukrroad.dialogfragment.ProblemFragment;
 import ua.ukraine.ukrroad.ukrroad.helpers.HelperFactory;
+import ua.ukraine.ukrroad.ukrroad.helpers.UploadIssueToServer;
 import ua.ukraine.ukrroad.ukrroad.maps.MapsActivity;
+import ua.ukraine.ukrroad.ukrroad.services.MyService;
 
 public class ListActivity extends Activity implements AdapterView.OnItemClickListener, ProblemFragment.ProblemTransmitter, CommentFragment.CommentTransmitter, EMailFragment.EMailTransmitter {
     ListView listView;
@@ -69,19 +74,19 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Connect contect = new Connect(getApplicationContext());
-                contect.addListener(new OnInternetListener() {
-                    @Override
-                    public void onDisconnect() {
-                        Toast.makeText(ListActivity.this, "Internet Disconect", Toast.LENGTH_SHORT).show();
-//                        Snackbar.make(findViewById(R.id.listViewLayout), "Internet Disconect", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                    }
-
-                    @Override
-                    public void onConnect() {
-                //todo
-                    }
-                });
+                if (isOnline()){
+                    new UploadIssueToServer(ListActivity.this){
+                            @Override
+                            public void getResult(String result) {
+                                Toast.makeText(ListActivity.this, result, Toast.LENGTH_SHORT).show();
+                            }
+                        }.execute(issue);
+                }
+                else{
+                    Intent intent = new Intent(ListActivity.this, MyService.class);
+                    intent.putExtra("isIssue", issue.getId());
+                    startService(intent);
+                }
             }
         });
 
@@ -141,5 +146,12 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }
