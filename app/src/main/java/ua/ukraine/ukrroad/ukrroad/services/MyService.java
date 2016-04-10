@@ -16,7 +16,6 @@ import ua.ukraine.ukrroad.ukrroad.helpers.UploadIssueToServer;
 
 public class MyService extends Service{
     Issue issue;
-    boolean busy;
     Connect connect;
 
     final String LOG_TAG = "myLogs";
