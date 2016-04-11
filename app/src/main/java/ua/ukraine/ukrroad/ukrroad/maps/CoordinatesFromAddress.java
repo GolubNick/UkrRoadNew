@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class CoordinatesFromAddress extends AsyncTask<String, Void, LatLng> {
     private final String POST = "POST";
@@ -20,7 +21,7 @@ public class CoordinatesFromAddress extends AsyncTask<String, Void, LatLng> {
     protected LatLng doInBackground(String... address) {
         StringBuffer jsonAllPlaces = new StringBuffer("");
         try {
-            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + address[0].replace(" ","+") + "&sensor=false");
+            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + URLEncoder.encode(address[0].replace(" ", "+"), "UTF-8") + "&sensor=false");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.setDoOutput(true);
