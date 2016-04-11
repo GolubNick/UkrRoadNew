@@ -1,6 +1,7 @@
 package ua.ukraine.ukrroad.ukrroad.maps;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -55,22 +56,28 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
             finish();
             return;
         }
+        getMyLocation();
         init();
 
     }
 
-    private void init() {
+    public void getMyLocation(){
         myCoordinates = getLocation();
-        showCoordinates(new LatLng(myCoordinates.getLatitude(), myCoordinates.getLongitude()));
-        map.setMyLocationEnabled(true);
+        if (myCoordinates == null) {
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), getResources().getInteger(R.integer.RESULT_CANCEL));
+        }
+        else
+            showCoordinates(new LatLng(myCoordinates.getLatitude(), myCoordinates.getLongitude()));
+    }
 
+    private void init() {
+        map.setMyLocationEnabled(true);
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
                 showCoordinates(latLng);
             }
         });
-
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +91,6 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
                 }
             }
         });
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
