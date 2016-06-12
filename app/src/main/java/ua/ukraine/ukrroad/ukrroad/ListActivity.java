@@ -7,19 +7,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.sql.SQLException;
-import java.util.List;
-
-import ua.ukraine.ukrroad.ukrroad.Internet.Connect;
-import ua.ukraine.ukrroad.ukrroad.Internet.OnInternetListener;
 import ua.ukraine.ukrroad.ukrroad.database.table.Image;
 import ua.ukraine.ukrroad.ukrroad.database.table.Issue;
 import ua.ukraine.ukrroad.ukrroad.dialogfragment.CommentFragment;
@@ -34,7 +28,6 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
     ListView listView;
     Issue issue;
     Image image;
-    int idIssue;
     String pathImage;
     ProblemFragment problemFragment;
     CommentFragment commentFragment;
@@ -68,7 +61,6 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        idIssue = issue.getId();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.faSsendIssueButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,13 +90,13 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         switch (position) {
             case 0:
                 intent = new Intent(ListActivity.this, ImageActivity.class);
-                intent.putExtra(getResources().getString(R.string.IDISUE), String.valueOf(idIssue));
+                intent.putExtra(getResources().getString(R.string.IDISUE), String.valueOf(issue.getId()));
                 startActivity(intent);
                 break;
             case 1:
                 intent = new Intent(ListActivity.this, MapsActivity.class);
-                intent.putExtra(getResources().getString(R.string.IDISUE), String.valueOf(idIssue));
-                startActivity(intent);
+                intent.putExtra(getResources().getString(R.string.IDISUE), String.valueOf(issue.getId()));
+                startActivityForResult(intent, getResources().getInteger(R.integer.OK_CODE_MAPS));
                 break;
             case 2:
                 problemFragment.show(getFragmentManager(), getResources().getString(R.string.TAG));
@@ -153,5 +145,14 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) {
+            return;
+        }
+        if (requestCode == getResources().getInteger(R.integer.OK_CODE_MAPS))
+            issue.setAddress(data.getStringExtra("address"));
     }
 }

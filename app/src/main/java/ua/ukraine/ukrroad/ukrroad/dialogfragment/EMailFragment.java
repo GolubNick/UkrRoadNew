@@ -2,7 +2,6 @@ package ua.ukraine.ukrroad.ukrroad.dialogfragment;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,6 @@ public class EMailFragment extends DialogFragment implements View.OnClickListene
             case R.id.save_email:
                 if (enterEMail.getText().toString().isEmpty())
                     Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.enterEMail), Toast.LENGTH_SHORT).show();
-//                    Snackbar.make(getActivity().findViewById(R.id.listViewLayout), getActivity().getResources().getString(R.string.enterEMail), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 else{
                     EMailTransmitter listener = (EMailTransmitter)getActivity();
                     listener.sendEmail(enterEMail.getText().toString());

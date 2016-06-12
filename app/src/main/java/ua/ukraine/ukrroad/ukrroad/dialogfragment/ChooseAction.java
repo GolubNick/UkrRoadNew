@@ -18,7 +18,6 @@ import ua.ukraine.ukrroad.ukrroad.R;
 import ua.ukraine.ukrroad.ukrroad.helpers.FileHelper;
 
 public class ChooseAction extends DialogFragment implements AdapterView.OnItemClickListener {
-//    Uri mUri;
     FileHelper fileHelper;
 
     @Override
@@ -39,7 +38,6 @@ public class ChooseAction extends DialogFragment implements AdapterView.OnItemCl
         Intent intent;
         switch (position) {
             case 0:
-//                mUri = fileHelper.generateFileUri(getResources().getString(R.string.NAME_DIRECTORY));
                 fileHelper.setUri(getActivity());
                 intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileHelper.mUri);

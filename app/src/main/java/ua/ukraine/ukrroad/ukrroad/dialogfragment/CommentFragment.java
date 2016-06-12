@@ -2,7 +2,6 @@ package ua.ukraine.ukrroad.ukrroad.dialogfragment;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,6 @@ public class CommentFragment extends DialogFragment implements View.OnClickListe
             case R.id.save_comment:
                 if (enterComments.getText().toString().isEmpty())
                     Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.enterComments), Toast.LENGTH_SHORT).show();
-//                Snackbar.make(view, getActivity().getResources().getString(R.string.enterComments), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 else {
                     CommentTransmitter listener = (CommentTransmitter) getActivity();
                     listener.sendComments(enterComments.getText().toString());

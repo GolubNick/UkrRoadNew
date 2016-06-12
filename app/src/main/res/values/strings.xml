@@ -23,8 +23,9 @@
     <string name="PATHIMAGE">pathimage</string>
     <string name="GET">GET</string>
     <string name="POST">POST</string>
-    <string name="URL">http://192.168.77.25:8080/doUpload</string>string>
-
+    <integer name="OK_CODE_MAPS">1111</integer>
+    <!--<string name="URL">http://192.168.77.25:8080/doUpload</string>string>-->
+    <string name="URL">http://10.10.10.12:8080/doUpload</string>
 
     <string-array name="defects">
         <item>Яма на дорозі</item>

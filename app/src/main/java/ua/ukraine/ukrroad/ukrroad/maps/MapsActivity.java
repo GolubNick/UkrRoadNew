@@ -105,7 +105,10 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    onBackPressed();
+                    Intent intent = new Intent();
+                    intent.putExtra("address", address);
+                    setResult(RESULT_OK, intent);
+                    finish();
                 }
             }
         });
