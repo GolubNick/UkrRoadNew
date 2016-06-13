@@ -17,6 +17,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +55,10 @@ public abstract class UploadIssueToServer extends AsyncTask<Issue, Void, String>
                 bab = new ByteArrayBody(dataImage.get(count), "image" + count + ".jpg");
                 reqEntity.addPart("photo", bab);
             }
-            reqEntity.addPart("address", new StringBody(params[0].getAddress()));
-            reqEntity.addPart("comment", new StringBody(params[0].getComment()));
-            reqEntity.addPart("email", new StringBody(params[0].getEmail()));
-            reqEntity.addPart("type", new StringBody(params[0].getDefect()));
+            reqEntity.addPart("address", new StringBody(new String(params[0].getAddress().getBytes("UTF-8")), "text/html", Charset.forName("UTF-8")));
+            reqEntity.addPart("comment", new StringBody(new String(params[0].getComment().getBytes("UTF-8")), "text/html", Charset.forName("UTF-8")));
+            reqEntity.addPart("email", new StringBody(new String(params[0].getEmail().getBytes("UTF-8")), "text/html", Charset.forName("UTF-8")));
+            reqEntity.addPart("type", new StringBody(new String(params[0].getDefect().getBytes("UTF-8")), "text/html", Charset.forName("UTF-8")));
             postRequest.setEntity(reqEntity);
             HttpResponse response = httpClient.execute(postRequest);
             BufferedReader reader = new BufferedReader(new InputStreamReader(
